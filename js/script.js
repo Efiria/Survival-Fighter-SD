@@ -1,32 +1,42 @@
-const name = "Survival Fighter SD"
-const version = "1.0"
+const gameName = "Survival Fighter SD"
+const gameVersion = "1.0"
 
-function versionGame(name,version){
-	document.write("Bienvenue dans " + name + " " + version)
+var userHealth = 20
+var userDamage = 5
+
+function versionGame(gameName,gameVersion){
+	document.write("Bienvenue dans " + gameName + " " + gameVersion)
 }
 
-var sales = "Toyota";
+function combat(userDamage, userHealth, iaDamage, iaHealth) {
+	
+	var iaHealth = Math.floor(Math.random() * 30) + 1
 
-var car = { myCar: "Saturn", getCar: carType("Honda"), special: sales}
+	var iaDamage = userDamage - Math.floor(Math.random() * 2)
+	
+	while(iaHealth >= 0 || userHealth >= 0) {
+		userCombat(userDamage, userHealth)
 
-function greetMe(yourName){
-	console.log("Hello " + yourName);
-}
-
-greetMe("Efiria");
-
-
-function carType(name) {
-	if (name === "Honda") {
-		return "Here is your " + name
-	}else{
-		return "Sorry we don't sell " + name
+		iaCombat(iaDamage, iaHealth)
 	}
 }
 
-console.log("My car is a "+ car.myCar)
-console.log(car.getCar)
-console.log(car.special)
+function userCombat(userDamage, userHealth){
+	
+	//luckHit 50%
+	var luckHit = Math.floor(Math.random() * 100)
 
-console.log(car.myCar.length); //saturn
-console.log("Oui j'ecri\n\tsur deux lignes avec une tabulation ")
+	if (luckHit >= 50) {
+		iaHealth = iaHealth - userDamage
+		console.log("ia lost " + iaHealth + " hp")
+	}
+}
+
+function iaCombat(iaDamage, iaHealth){
+	var luckHit = Math.floor(Math.random() * 100)
+	
+	if (luckHit >= 50) {
+		userHealth = userHealth - iaDamage
+		console.log("user lost " + userHealth + " hp")
+	}
+}
