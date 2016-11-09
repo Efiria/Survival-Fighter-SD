@@ -8,20 +8,33 @@ function versionGame(gameName,gameVersion){
 	document.write("Bienvenue dans " + gameName + " " + gameVersion)
 }
 
-function combat(userDamage, userHealth, iaDamage, iaHealth) {
-	
+//create ia
+function createIa() {
 	var iaHealth = Math.floor(Math.random() * 30) + 1
+	var iaDamage = userDamage + 1
+}
 
-	var iaDamage = userDamage - Math.floor(Math.random() * 2)
-	
-	while(iaHealth >= 0 || userHealth >= 0) {
-		userCombat(userDamage, userHealth)
+function combat(userDamage, iaHealth, iaDamage, userHealth) {
+	//call ia
+	createIa()
 
-		iaCombat(iaDamage, iaHealth)
+	while(true) {
+
+		userCombat(userDamage, iaHealth)
+
+		iaCombat(iaDamage, userHealth)
+
+		if(iaHealth <= 0){
+			console.log("user win")
+			break
+		} else if (userHealth <= 0){
+			console.log("ia win")
+			break
+		}
 	}
 }
 
-function userCombat(userDamage, userHealth){
+function userCombat(userDamage, iaHealth){
 	
 	//luckHit 50%
 	var luckHit = Math.floor(Math.random() * 100)
@@ -32,7 +45,7 @@ function userCombat(userDamage, userHealth){
 	}
 }
 
-function iaCombat(iaDamage, iaHealth){
+function iaCombat(iaDamage, userHealth){
 	var luckHit = Math.floor(Math.random() * 100)
 	
 	if (luckHit >= 50) {
