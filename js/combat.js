@@ -1,39 +1,28 @@
 
-//create ia
-function createIa(iaHealth, iaDamage) {
-	var iaHealth = Math.floor(Math.random() * 30) + 1
-	var iaDamage = userDamage
+var win = 0
 
-	return iaHealth, iaDamage
-}
 
 function combat(win) {
 
-	var userHealth = 20
-	var userDamage = 5
-
-	var iaHealth = Math.floor(Math.random() * 30) + 1
-	var iaDamage = userDamage
-
-	while(iaHealth >= 0 || userHealth >= 0) {
-		userCombat(userDamage, iaHealth)
+	while(win == 15) {
+		userCombat()
 
 		console.log(" ")
 
-		iaCombat(iaDamage, userHealth)
+		iaCombat()
 
-	}
-	if(iaHealth <= 0){
-		console.log("user win")
-		return win = 1 
-	} else if (userHealth <= 0){
-		console.log("ia win")
-		return win = 0
+		if(iaHealth <= 0){
+			console.log("user win")
+			return win = 1 
+		} else if (userHealth <= 0){
+			console.log("ia win")
+			return win = 2
+		}
 	}
 
 }
 
-function userCombat(userDamage, iaHealth){
+function userCombat(){
 	
 	var luckHit = Math.floor(Math.random() * 100)
 
@@ -48,7 +37,7 @@ function userCombat(userDamage, iaHealth){
 	}
 }
 
-function iaCombat(iaDamage, userHealth){
+function iaCombat(){
 
 	var luckHit = Math.floor(Math.random() * 100)
 	
